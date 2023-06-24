@@ -1,16 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau+Infant:wght@500&display=swap');
+
 * {
     padding: 0;
     margin: 0;
     
-    font-family: sans-serif
+    font-family: 'Ysabeau Infant', sans-serif;
+    /* border: 1px solid blue; */
+}
+
+body {
+    padding: 1rem;
+    background-color: rgb(252, 245, 229);
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
 }
 
 table tr th {
-    padding: 0.5rem;
     border: 1px solid black;
+    padding: 0.5rem;
+}
+
+#deleteButton-header {
+    border: none;
+    width: 3.5rem;
+}
+
+td {
+    border: 1px solid black;
+    padding: 0.3rem;
 }
 
 .deleteButton {
-    width: 5rem;
+    justify-self: center;
+    padding: 0.3rem;
+    background-color: red;
 }
 
+#addBookFormToggleButton {
+    justify-self: center;
+}
+
+#formContainer {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+#addBookForm {
+    display: grid;
+    grid-template-rows: 2rem 1fr 1fr 1fr 1fr 3rem;
+    
+    overflow: auto;
+
+    position: fixed;
+    bottom: calc(40vh - 5rem);
+    right: calc(50% - 15rem/2);
+    width: 15rem;
+    border: 1px solid black;
+}
+
+.addBookForm-header {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.addBookForm-row1-container {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.addBookForm-row2-container {
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.addBookForm-row3-container {
+    grid-area: 4 / 1 / 5 / 2;
+}
+
+.addBookForm-row4-container {
+    grid-area: 5 / 1 / 6 / 2;
+}
+
+#addBookForm {
+    padding: 1rem;
+
+    background-color: rgb(252, 245, 229);
+}
+
+#addBookForm div {
+    padding: 0.5rem;
+
+    text-align: center;
+}
+
+#submitAddBookFormButton {
+    padding: 0.3rem;
+}
+
+#closeFormButton {
+    text-align: right;
+    position: relative;
+    top: -3.5rem;
+    left: 7.5rem;
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+#closeFormButton:hover,
+#closeFormButton:focus {
+    cursor: pointer;
+}

@@ -2,6 +2,7 @@ let library = [];
 
 var bookCount = 0;
 
+// used give unique identifier attribute to each book
 function bookIdentifier() {
     bookCount++;
     return bookCount;    
@@ -85,6 +86,21 @@ function deleteBook(e) {
 
 const addBookFormToggleButton = document.getElementById("addBookFormToggleButton");
 
+addBookFormToggleButton.addEventListener("click", openForm) 
+
+function openForm() {
+    formContainer.style.display = "block";
+}
+
+const formContainer = document.getElementById("formContainer");
+formContainer.addEventListener("click", toggleForm);
+
+function toggleForm(e) {
+    if(e.target == formContainer) {
+        formContainer.style.display = "none";
+    }
+}
+
 const addBookTitle = document.getElementById("addBookTitle");
 const addBookAuthor = document.getElementById("addBookAuthor");
 const addBookPages = document.getElementById("addBookPages");
@@ -110,6 +126,14 @@ function submitAddBookForm(e) {
 
 function clearAddBookForm() {
     addBookTitle.value = addBookAuthor.value = addBookPages.value = "";
+}
+
+const closeFormButton = document.getElementById("closeFormButton");
+
+closeFormButton.addEventListener("click", closeForm);
+
+function closeForm() {
+    formContainer.style.display = "none";
 }
 
 var theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "false");

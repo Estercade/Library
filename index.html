@@ -14,26 +14,41 @@
             <th><h3>AUTHOR</h3></th>
             <th><h3>PAGES</h3></th>
             <th><h3>STATUS</h3></th>
-            <th></th>
+            <th id="deleteButton-header"></th>
         </tr>
     </table>
     <button type="button" id="addBookFormToggleButton">ADD A BOOK</button>
-    <div class="form-popup" id="addBookForm">
-        <form action="" novalidate>
-            <h3>Add a book</h3>
-            <label for="addBookTitle">TITLE:</label>
-            <input type="text" name="title" id="addBookTitle" required>
+    <div class="form-popup" id="formContainer">
+        <form action="" id="addBookForm" novalidate>
+            <div class="addBookForm-header">
+                <h3>ADD A BOOK</h3>
+                <span id="closeFormButton">&times;</span>
+            </div>
+            <div class="addBookForm-row1-container">
+                <label for="addBookTitle">TITLE:</label>
+                <br>
+                <input type="text" name="title" id="addBookTitle" required>
+            </div>
             
-            <label for="addBookAuthor">AUTHOR:</label>
-            <input type="text" name="author" id="addBookAuthor" required>
+            <div class="addBookForm-row2-container">
+                <label for="addBookAuthor">AUTHOR:</label>
+                <br>
+                <input type="text" name="author" id="addBookAuthor" required>
+            </div>
 
-            <label for="addBookPages">PAGES:</label>
-            <input type="number" name="pages" id="addBookPages" min="1" required>
+            <div class="addBookForm-row3-container">
+                <label for="addBookPages">PAGES:</label>
+                <br>
+                <input type="number" name="pages" id="addBookPages" min="1" required>
+            </div>
 
-            <label for="addBookRead">READ:</label>
-            <input type="checkbox" name="read" id="addBookRead" checked>
+            <div class="addBookForm-row4-container">
+                <label for="addBookRead">READ:</label>
+                <br>
+                <input type="checkbox" name="read" id="addBookRead" checked>
+            </div>
 
-            <button type="submit" id="submitAddBookFormButton">SUBMIT</button>
+            <div class="addBookForm-footer"><button type="submit" id="submitAddBookFormButton">SUBMIT</button></div>
         </form>
     </div>
 </body>

@@ -24,8 +24,7 @@ Wilson Lee
 - [Github](https://github.com/estercade/)
 
 ## Credits
-
-
+* [Ysabeau Infant by by Christian Thalmann](https://fonts.google.com/specimen/Ysabeau+Infant) from Google Fonts for webpage font
 
 ## Acknowledgments
 

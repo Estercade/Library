@@ -27,6 +27,8 @@ function addBookToTable(i) {
     newRow.insertCell(2).innerText = library[i].pages;
     newRow.insertCell(3).appendChild(createReadButton(i));
     newRow.insertCell(4).appendChild(createDeleteButton(i));
+    addDeleteListener();
+    addReadListener();
 }
 
 function displayLibrary() {

@@ -3,6 +3,15 @@ let library = [];
 var bookCount = 0;
 
 // used give unique identifier attribute to each book
+var bookIdentifierHandler = function() {
+    var bookCount = 0;
+    var getBookIdentifier = function() {
+        bookCount++;
+        return bookCount;
+    }
+    return { getBookIdentifier };
+}();
+
 function bookIdentifier() {
     bookCount++;
     return bookCount;    
@@ -28,6 +37,7 @@ function addBookToTable(i) {
     newRow.insertCell(2).innerText = library[i].pages;
     newRow.insertCell(3).appendChild(createReadButton(i));
     newRow.insertCell(4).appendChild(createDeleteButton(i));
+    newRow.cells[4].classList.add("deleteButtonColumn");
 }
 
 function displayLibrary() {
@@ -39,7 +49,7 @@ function displayLibrary() {
         newRow.insertCell(2).innerText = library[i].pages;
         newRow.insertCell(3).appendChild(createReadButton(i));
         newRow.insertCell(4).appendChild(createDeleteButton(i));
-        newRow.cells[4].classList.add("deleteButtonRow");
+        newRow.cells[4].classList.add("deleteButtonColumn");
     }
 }
 

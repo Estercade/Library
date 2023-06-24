@@ -8,6 +8,9 @@
     <title>Library</title>
 </head>
 <body>
+    <header>
+        <h1>My Library</h1>
+    </header>
     <table id="libraryTable">
         <tr class="table-headings">
             <th><h3>BOOK TITLE</h3></th>
@@ -28,18 +31,21 @@
                 <label for="addBookTitle">TITLE:</label>
                 <br>
                 <input type="text" name="title" id="addBookTitle" required>
+                <div class="error-container"></div>
             </div>
             
             <div class="addBookForm-row2-container">
                 <label for="addBookAuthor">AUTHOR:</label>
                 <br>
                 <input type="text" name="author" id="addBookAuthor" required>
+                <div class="error-container"></div>
             </div>
 
             <div class="addBookForm-row3-container">
                 <label for="addBookPages">PAGES:</label>
                 <br>
                 <input type="number" name="pages" id="addBookPages" min="1" required>
+                <div class="error-container"></div>
             </div>
 
             <div class="addBookForm-row4-container">

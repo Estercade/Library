@@ -39,6 +39,7 @@ function displayLibrary() {
         newRow.insertCell(2).innerText = library[i].pages;
         newRow.insertCell(3).appendChild(createReadButton(i));
         newRow.insertCell(4).appendChild(createDeleteButton(i));
+        newRow.cells[4].classList.add("deleteButtonRow");
     }
 }
 
@@ -112,15 +113,16 @@ submitAddBookFormButton.addEventListener("click", submitAddBookForm);
 // library.push returns length of library array
 // with index of 1, so to get the correct index number
 // of the new book we must subtract 1
-function submitAddBookForm(e) {
+function submitAddBookForm(e) {;
     e.preventDefault();
     if (!addBookTitle.validity.valid || !addBookAuthor.validity.valid || !addBookPages.validity.valid) {
-        console.log("invalid");
+        window.alert("Please enter a valid book.");
     } else {
         const book = new Book(`${addBookTitle.value}`, `${addBookAuthor.value}`, `${addBookPages.value}`, `${addBookRead.checked}`);
         const libraryArrayNumber = (library.push(book) - 1);
         addBookToTable(libraryArrayNumber);
         clearAddBookForm(libraryArrayNumber);
+        formContainer.style.display = "none";
     }
 }
 
@@ -134,6 +136,18 @@ closeFormButton.addEventListener("click", closeForm);
 
 function closeForm() {
     formContainer.style.display = "none";
+}
+
+addBookTitle.addEventListener("focusout", checkValidity);
+addBookAuthor.addEventListener("focusout", checkValidity);
+addBookPages.addEventListener("focusout", checkValidity);
+
+function checkValidity(e) {
+    e.target.classList.remove("invalidInput");
+    if (!e.target.validity.valid) {
+        e.target.classList.add("invalidInput");
+        console.log(e.target.classList);
+    }
 }
 
 var theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "false");

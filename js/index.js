@@ -55,7 +55,7 @@ function toggleRead(e) {
             library[i].read == "READ" ? library[i].read = "NOT READ" : library[i].read = "READ";
             console.log(library[i]);
             document.getElementById(`readButton${i + 1}`).innerText = library[i].read;
-            return;
+            break;
         }
     }
 }
@@ -81,13 +81,8 @@ function deleteBook(e) {
     for (let i = 0; i < library.length; i++) {
         if (library[i].identifier == deleteBookId) {
             library.splice(i, 1);
+            table.deleteRow(i + 1);
             return;
-        }
-    }
-    // substring removes 'grow' and returns only identifier
-    for (let i = 0; i < table.rows.length; i++) {
-        if (tableRows[i].id.substring(3) == deleteBookId) {
-            table.deleteRow(i);
         }
     }
 }

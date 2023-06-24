@@ -8,7 +8,7 @@
     <title>Library</title>
 </head>
 <body>
-    <table id="library">
+    <table id="libraryTable">
         <tr class="table-headings">
             <th><h3>BOOK TITLE</h3></th>
             <th><h3>AUTHOR</h3></th>
@@ -19,21 +19,21 @@
     </table>
     <button type="button" id="addBookFormToggleButton">ADD A BOOK</button>
     <div class="form-popup" id="addBookForm">
-        <form action="">
+        <form action="" novalidate>
             <h3>Add a book</h3>
             <label for="addBookTitle">TITLE:</label>
-            <input type="text" name="title" id="addBookTitle">
+            <input type="text" name="title" id="addBookTitle" required>
             
             <label for="addBookAuthor">AUTHOR:</label>
-            <input type="text" name="author" id="addBookAuthor">
+            <input type="text" name="author" id="addBookAuthor" required>
 
             <label for="addBookPages">PAGES:</label>
-            <input type="number" name="pages" id="addBookPages">
+            <input type="number" name="pages" id="addBookPages" min="1" required>
 
             <label for="addBookRead">READ:</label>
             <input type="checkbox" name="read" id="addBookRead">
 
-            <button type="button" id="submitAddBookFormButton">SUBMIT</button>
+            <button type="submit" id="submitAddBookFormButton">SUBMIT</button>
         </form>
     </div>
 </body>

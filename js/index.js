@@ -15,9 +15,19 @@ function Book(title, author, pages, read) {
     this.identifier = bookIdentifier();
 }
 
-var table = document.getElementById("library");
+var table = document.getElementById("libraryTable");
 
-var tableRows = table.rows;
+// new row is inserted at i + 1 because
+// the first table row is the column headings
+function addBookToTable(i) {
+    const newRow = table.insertRow(i + 1);
+    newRow.id = `row${library[i].identifier}`;
+    newRow.insertCell(0).innerText = library[i].title;
+    newRow.insertCell(1).innerText = library[i].author;
+    newRow.insertCell(2).innerText = library[i].pages;
+    newRow.insertCell(3).appendChild(createReadButton(i));
+    newRow.insertCell(4).appendChild(createDeleteButton(i));
+}
 
 function displayLibrary() {
     for (i = 0; i < library.length; i++) {
@@ -97,10 +107,19 @@ const addBookRead = document.getElementById("addBookRead");
 const submitAddBookFormButton = document.getElementById("submitAddBookFormButton");
 submitAddBookFormButton.addEventListener("click", submitAddBookForm);
 
-function submitAddBookForm() {
-    const book = new Book(`${addBookTitle.value}`, `${addBookAuthor.value}`, `${addBookPages.value}`, `${addBookRead.value}`);
-    library.push(book);
-    clearAddBookForm();
+// library.push returns length of library array
+// with index of 1, so to get the correct index number
+// of the new book we must subtract 1
+function submitAddBookForm(e) {
+    e.preventDefault();
+    if (!addBookTitle.validity.valid || !addBookAuthor.validity.valid || !addBookPages.validity.valid) {
+        console.log("invalid");
+    } else {
+        const book = new Book(`${addBookTitle.value}`, `${addBookAuthor.value}`, `${addBookPages.value}`, `${addBookRead.value}`);
+        const libraryArrayNumber = (library.push(book) - 1);
+        addBookToTable(libraryArrayNumber);
+        clearAddBookForm(libraryArrayNumber);
+    }
 }
 
 function clearAddBookForm() {

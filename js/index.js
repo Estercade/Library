@@ -11,7 +11,7 @@ function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.read = read == "on";
     this.identifier = bookIdentifier();
 }
 
@@ -49,7 +49,7 @@ function createReadButton(i) {
     const readButton = document.createElement("button");
     readButton.id = `readButton${library[i].identifier}`
     readButton.className = "readButton";
-    readButton.innerText = library[i].read;
+    library[i].read ? readButton.innerText = "READ" : readButton.innerText = "NOT READ";
     return readButton;
 }
 
@@ -64,9 +64,9 @@ function toggleRead(e) {
     const readBookId = e.target.id.substring(10);
     for (let i = 0; i < library.length; i++) {
         if (library[i].identifier == readBookId) {
-            library[i].read == "READ" ? library[i].read = "NOT READ" : library[i].read = "READ";
-            console.log(library[i]);
-            document.getElementById(`readButton${readBookId}`).innerText = library[i].read;
+            const readButton = document.getElementById(`readButton${readBookId}`);
+            library[i].read == true ? library[i].read = false : library[i].read = true;
+            library[i].read ? readButton.innerText = "READ" : readButton.innerText = "NOT READ";
             break;
         }
     }

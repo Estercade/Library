@@ -54,7 +54,7 @@ function toggleRead(e) {
         if (library[i].identifier == readBookId) {
             library[i].read == "READ" ? library[i].read = "NOT READ" : library[i].read = "READ";
             console.log(library[i]);
-            document.getElementById(`readButton${i + 1}`).innerText = library[i].read;
+            document.getElementById(`readButton${readBookId}`).innerText = library[i].read;
             break;
         }
     }
@@ -87,9 +87,25 @@ function deleteBook(e) {
     }
 }
 
-const addBookButton = document.getElementById("addBookButton");
+const addBookFormToggleButton = document.getElementById("addBookFormToggleButton");
 
+const addBookTitle = document.getElementById("addBookTitle");
+const addBookAuthor = document.getElementById("addBookAuthor");
+const addBookPages = document.getElementById("addBookPages");
+const addBookRead = document.getElementById("addBookRead");
 
+const submitAddBookFormButton = document.getElementById("submitAddBookFormButton");
+submitAddBookFormButton.addEventListener("click", submitAddBookForm);
+
+function submitAddBookForm() {
+    const book = new Book(`${addBookTitle.value}`, `${addBookAuthor.value}`, `${addBookPages.value}`, `${addBookRead.value}`);
+    library.push(book);
+    clearAddBookForm();
+}
+
+function clearAddBookForm() {
+    addBookTitle.value = addBookAuthor.value = addBookPages.value = addBookRead.value = "";
+}
 
 var theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "NOT READ");
 
@@ -99,12 +115,8 @@ var neuromancer = new Book("Neuromancer", "William Gibson", "271", "NOT READ");
 
 var frankenstein = new Book("Frankenstein", "Mary Shelley", "166", "READ");
 
-function addBook(book) {
-    library.push(book);
-}
-
-addBook(theHobbit);
-addBook(dune);
-addBook(neuromancer);
-addBook(frankenstein);
+library.push(theHobbit);
+library.push(dune);
+library.push(neuromancer);
+library.push(frankenstein);
 displayLibrary();

@@ -10,28 +10,30 @@
 <body>
     <table id="library">
         <tr class="table-headings">
-            <th><h3>Book title</h3></th>
-            <th><h3>Author</h3></th>
-            <th><h3>Pages</h3></th>
-            <th><h3>Status</h3></th>
+            <th><h3>BOOK TITLE</h3></th>
+            <th><h3>AUTHOR</h3></th>
+            <th><h3>PAGES</h3></th>
+            <th><h3>STATUS</h3></th>
             <th></th>
         </tr>
     </table>
-    <button type="button" id="addBookButton">ADD A BOOK</button>
+    <button type="button" id="addBookFormToggleButton">ADD A BOOK</button>
     <div class="form-popup" id="addBookForm">
         <form action="">
             <h3>Add a book</h3>
-            <label for="addBookTitle">Title</label>
-            <input type="text" name="title">
+            <label for="addBookTitle">TITLE:</label>
+            <input type="text" name="title" id="addBookTitle">
             
-            <label for="addBookAuthor">Author</label>
-            <input type="text" name="author">
+            <label for="addBookAuthor">AUTHOR:</label>
+            <input type="text" name="author" id="addBookAuthor">
 
-            <label for="addBookPages">Pages</label>
-            <input type="text" name="pages">
+            <label for="addBookPages">PAGES:</label>
+            <input type="number" name="pages" id="addBookPages">
 
-            <label for="addBookRead">Read</label>
-            <input type="text" name="read">
+            <label for="addBookRead">READ:</label>
+            <input type="checkbox" name="read" id="addBookRead">
+
+            <button type="button" id="submitAddBookFormButton">SUBMIT</button>
         </form>
     </div>
 </body>

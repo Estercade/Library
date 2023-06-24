@@ -11,7 +11,7 @@ function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read == "on";
+    this.read = read == "true";
     this.identifier = bookIdentifier();
 }
 
@@ -27,8 +27,6 @@ function addBookToTable(i) {
     newRow.insertCell(2).innerText = library[i].pages;
     newRow.insertCell(3).appendChild(createReadButton(i));
     newRow.insertCell(4).appendChild(createDeleteButton(i));
-    addDeleteListener();
-    addReadListener();
 }
 
 function displayLibrary() {
@@ -41,8 +39,6 @@ function displayLibrary() {
         newRow.insertCell(3).appendChild(createReadButton(i));
         newRow.insertCell(4).appendChild(createDeleteButton(i));
     }
-    addDeleteListener();
-    addReadListener();
 }
 
 function createReadButton(i) {
@@ -50,14 +46,8 @@ function createReadButton(i) {
     readButton.id = `readButton${library[i].identifier}`
     readButton.className = "readButton";
     library[i].read ? readButton.innerText = "READ" : readButton.innerText = "NOT READ";
+    readButton.addEventListener("click", toggleRead);
     return readButton;
-}
-
-const readButtonsList = document.getElementsByClassName("readButton");
-function addReadListener() {
-    for (let item of readButtonsList) {
-        item.addEventListener("click", toggleRead);
-    }
 }
 
 function toggleRead(e) {
@@ -65,7 +55,7 @@ function toggleRead(e) {
     for (let i = 0; i < library.length; i++) {
         if (library[i].identifier == readBookId) {
             const readButton = document.getElementById(`readButton${readBookId}`);
-            library[i].read == true ? library[i].read = false : library[i].read = true;
+            library[i].read ? library[i].read = false : library[i].read = true;
             library[i].read ? readButton.innerText = "READ" : readButton.innerText = "NOT READ";
             break;
         }
@@ -77,15 +67,9 @@ function createDeleteButton(i) {
     deleteButton.id = `deleteButton${library[i].identifier}`;
     deleteButton.className = "deleteButton";
     deleteButton.innerText = "DELETE";
+    deleteButton.addEventListener("click", deleteBook);
     return deleteButton;
 }
-
-const deleteButtonsList = document.getElementsByClassName("deleteButton");
-function addDeleteListener() {
-    for (let item of deleteButtonsList) {
-        item.addEventListener("click", deleteBook);
-        }
-    }
 
 function deleteBook(e) {
     // substring removes 'deleteButton' and returns identifier
@@ -117,7 +101,7 @@ function submitAddBookForm(e) {
     if (!addBookTitle.validity.valid || !addBookAuthor.validity.valid || !addBookPages.validity.valid) {
         console.log("invalid");
     } else {
-        const book = new Book(`${addBookTitle.value}`, `${addBookAuthor.value}`, `${addBookPages.value}`, `${addBookRead.value}`);
+        const book = new Book(`${addBookTitle.value}`, `${addBookAuthor.value}`, `${addBookPages.value}`, `${addBookRead.checked}`);
         const libraryArrayNumber = (library.push(book) - 1);
         addBookToTable(libraryArrayNumber);
         clearAddBookForm(libraryArrayNumber);
@@ -125,16 +109,16 @@ function submitAddBookForm(e) {
 }
 
 function clearAddBookForm() {
-    addBookTitle.value = addBookAuthor.value = addBookPages.value = addBookRead.value = "";
+    addBookTitle.value = addBookAuthor.value = addBookPages.value = "";
 }
 
-var theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "NOT READ");
+var theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "false");
 
-var dune = new Book("Dune", "Frank Herbert", "896", "READ");
+var dune = new Book("Dune", "Frank Herbert", "896", "true");
 
-var neuromancer = new Book("Neuromancer", "William Gibson", "271", "NOT READ");
+var neuromancer = new Book("Neuromancer", "William Gibson", "271", "false");
 
-var frankenstein = new Book("Frankenstein", "Mary Shelley", "166", "READ");
+var frankenstein = new Book("Frankenstein", "Mary Shelley", "166", "true");
 
 library.push(theHobbit);
 library.push(dune);
